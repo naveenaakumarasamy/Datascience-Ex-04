@@ -126,3 +126,66 @@ numeric_cols.dropna()
 ```
 
 ![16](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/f452c419-bbdf-4b63-8c43-85f8bee9dc16)
+```
+sns.boxplot(numeric_cols)
+```
+![17](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/bed6c4f9-9448-46f8-bd57-4dc00729f7af)
+```
+sns.scatterplot(x = 'Salary',y='Age',data = numeric_cols)
+```
+![18](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/5c1d2759-1ff1-458e-bea1-8aae2c88dec9)
+```
+sns.scatterplot(x = 'Experience_Years',y='Salary',data = numeric_cols)
+```
+![19](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/03e12a08-834e-46e9-b00f-b8e85ab33a44)
+```
+sns.scatterplot(x = 'Experience_Years',y='Age',data = numeric_cols)
+```
+![20](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/360a9258-2b26-4286-b8fe-e1dfff976c87)
+```
+sns.heatmap(numeric_cols.corr(),annot = True)
+```
+![21](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/276e96e1-f8bd-4358-a7ab-8deba81f8454)
+```
+from google.colab import files
+uploaded = files.upload()
+```
+![22](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/070e1037-7270-4d1a-8dfd-44767290745f)
+```
+df = pd.read_csv('SuperStore.csv')
+df
+```
+![23](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/e950c416-9261-4ba3-ab17-4a161c86b168)
+```
+df.isnull().sum()
+```
+![24](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/547659e9-026b-401b-b88f-056caece545a)
+```
+df.dropna()
+```
+![25](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/840e4d74-913f-4a1d-b071-301aa0e07772)
+```
+df.dtypes
+```
+![26](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/074747bd-9a1c-46ed-bb65-b4230dd064a3)
+```
+numeric_cols = df.select_dtypes(include=[int,float])
+q1 = numeric_cols.quantile(0.25);
+q3 = numeric_cols.quantile(0.75);
+iqr = q3 - q1
+iqr
+```
+![27](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/edfc7b2b-85fa-4ef1-b5d1-4e9221593aec)
+```
+low = q1 - 1.5*iqr
+high = q1 + 1.5*iqr
+numeric_cols = numeric_cols[(numeric_cols >= low) & (numeric_cols <= high)]
+sns.boxplot(numeric_cols)
+```
+![28](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/cde829c2-81dc-4509-b8a1-a5893362d2e9)
+```
+sns.heatmap(numeric_cols.corr(),annot = True)
+```
+![29](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/3f6e6f9f-125b-424c-9d5e-8605085697ef)
+## RESULT:
+Thus we have read the given data and performed the multivariate analysis with different types of plots.
