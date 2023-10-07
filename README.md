@@ -32,6 +32,8 @@ Find the pairwise correlation of all columns in the dataframe.corr()
 Save the final data set into the file
 
 # PROGRAM
+# Diabetes.csv file :
+
 Developed by : Naveenaa A K
 reg .no : 212222230094
 ```
@@ -187,5 +189,78 @@ sns.boxplot(numeric_cols)
 sns.heatmap(numeric_cols.corr(),annot = True)
 ```
 ![29](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/3f6e6f9f-125b-424c-9d5e-8605085697ef)
+
+# SuperStore.csv file:
+Developed by: Naveenaa A.K
+Reg. No: 212222230094
+```
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+data=pd.read_csv("/content/SuperStore.csv")
+df=pd.DataFrame(data)
+df.head()
+```
+![Screenshot 2023-10-07 090054](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/7306ec31-bfaf-41ab-85dc-51b8a0507170)
+```
+df.info()
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/715360fc-f4c8-4b4b-b159-8cd8e7321006)
+```
+df.describe()
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/bc14c31a-1be0-4036-a461-5114b1b78f1a)
+```
+df.isnull().sum()
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/35cfc39a-f452-4c9c-ac62-7dfb15734a07)
+```
+df['Postal Code']=df['Postal Code'].fillna(df['Postal Code'].mode()[0])
+df.isnull().sum()
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/d250cfde-daa8-450b-9b6e-f51e22899562)
+```
+sns.scatterplot(x=df['Region'],y=df['Sales'])
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/5b398d52-5efa-4ce8-9a9f-44590d0ce957)
+```
+
+states=df.loc[:,["State","Sales"]]
+states=states.groupby(by=["State"]).sum().sort_values(by="Sales")
+plt.figure(figsize=(12,5))
+plt.xticks(rotation=90)
+sns.barplot(x=states.index,y="Sales",data=states)
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/c7759f04-4815-48e4-9961-4b9c56044087)
+```
+states=df.loc[:,["Ship Mode","Row ID"]]
+states=states.groupby(by=["Ship Mode"]).sum().sort_values(by="Row ID")
+sns.barplot(x=states.index,y="Row ID",data=states)
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/59334cd8-d12c-4302-a238-a252afb1bc61)
+```
+plt.xticks(rotation = 90)
+plt.xlabel=("SHIP MODE")
+plt.ylabel=("ROW ID")
+plt.show()
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/00dd2827-3f36-4d66-b8fb-5f54df2b435b)
+```
+sns.boxplot(x=df['Ship Date'],y=df['Sales'])
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/bfd2d375-b81d-42e4-ad71-c05f55401011)
+```
+sns.displot(df, x="Region", hue="Category")
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/6c3a12f4-d031-4d04-b5fa-b5a0639d9eed)
+```
+df.corr()
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/dafb235f-0706-4254-bfd1-473c48e40aff)
+```
+sns.heatmap(df.corr(),annot=True)
+```
+![image](https://github.com/naveenaakumarasamy/Datascience-Ex-04/assets/113497406/df8298c8-d4fd-45b2-b6fb-811c0e50a73d)
+
 ## RESULT:
 Thus we have read the given data and performed the multivariate analysis with different types of plots.
